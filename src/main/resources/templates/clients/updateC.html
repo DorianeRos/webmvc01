@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<h1 th:text="${titre}"></h1>
+<div th:replace="fragments/Header :: taghead"></div>
+
+<body>
+<div th:replace="fragments/menu :: tagmenu">  </div>
+	
+		<form th:action="@{/client/updateC}" 	th:object="${clientForm}" method="post">
+			<input type="hidden" th:value="${clientForm.id}" name="id"/>
+			
+<div class="justify-content-md-center">
+	<div class="row g-2 container-md ">
+	
+		<div class="col-md-3">		
+		<label  class="form-label">Prenom :	</label>
+			<input type="text" class="form-control" th:field="*{prenom}" />
+		</div>	<br/>
+		
+		<div class="col-md-3">		
+		<label  class="form-label">	Nom :</label>
+			<input type="text" class="form-control" th:field="*{nom}" />
+		</div>	<br/>
+		<div class="row g-3 container-md ">
+	<div class="col-md-2">
+	<input type="submit" class="btn btn-outline-info" value="Modifier" />
+	</div>
+	<div class="col-md-2">
+		
+		<a th:href="@{/client/clients}"><button type="button" class="btn btn-outline-warning">Retour</button></a>
+	</div>
+	</div>
+	</div>
+	</div>
+	
+</form>
+
+</body>
+</html>

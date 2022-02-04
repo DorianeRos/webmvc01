@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+	<h1 th:text="${titre}"></h1>
+<div th:replace="fragments/Header :: taghead"></div>
+<div th:replace="fragments/menu :: tagmenu">  </div>
+<body>
+
+		<form th:action="@{/emprunt/addemprunt}" 	th:object="${empruntForm}" method="post">
+<div class="justify-content-md-center">
+	<div class="row g-3 container-md ">
+	
+		<div class="col-md-3">
+  			<label  class="form-label">Date de début :</label>
+			<input type="text" class="form-control" th:field="*{datedebut}" />
+		</div>	<br/>
+				<div class="col-md-3">
+  			<label class="form-label">Date de fin :</label>
+			<input type="text" class="form-control" th:field="*{datefin}" />
+		</div>	<br/>
+		
+		<div class="col-md-3">
+  			<label class="form-label">Delais :</label>
+			<input type="text" class="form-control" th:field="*{delai}" />
+		</div>	<div></div>
+	</div>		
+	<div class="row g-3 container-md ">
+		<div class="col-md-4">
+  			<label class="form-label">Choisir un client :</label>
+			<select class="form-control" th:field="*{clientE}"> <option th:each="client : ${listeClients}" th:text=${client.nom}
+					th:value="${client.id}"/>
+			</select>	
+		</div>	
+		<br/></br>
+		
+		<div class="col-md-5">
+  			<label class="form-label">Choisir un ou plusieurs livres :</label>
+			<select class="form-control" th:field="*{livresE}" multiple> <option th:each="l : ${listeLivres}" th:text=${l.titre}
+					th:value="${l.id}"/>
+			</select>	
+		</div> 	<div></div><br/><br/>
+			</div>	
+	<div class="row g-3 container-md ">
+	<div class="col-md-1">
+			<input type="submit" class="btn btn-outline-info"  value="Créer" />
+	</div>
+	<div class="col-md-1">	
+		<a th:href="@{/}"><button type="button" class="btn btn-outline-warning">Retour</button></a>
+	</div></div>
+	</div>	
+		</form>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<h1 th:text="${titre}"></h1>	
+<div th:replace="fragments/Header :: taghead"></div>
+<div th:replace="fragments/menu :: tagmenu">  </div>
+<body>
+	
+
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">Titre</th>
+				<th scope="col">Auteur</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="livre : ${livres}">
+				<td th:text="${livre.titre}"></td>
+				<td th:text="${livre.auteur}"></td>		
+			
+			<ul>
+				<td> <a th:href="@{/livre/delete/{id}(id=${livre.id})}"><button type="button" class="btn btn-outline-danger"> SUPPRIMER</button></a></td>
+				<td> <a th:href="@{/livre/update/{id}(id=${livre.id})}"><button type="button" class="btn btn-outline-info"> MODIFIER</button></a></td>
+					
+			</ul>
+		</tbody>
+	</table>
+</body>
+</html>

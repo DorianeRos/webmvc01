@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<h1 th:text="${titre}"></h1>
+<div th:replace="fragments/Header :: taghead"></div>
+<div th:replace="fragments/menu :: tagmenu">  </div>
+<body>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">Date de début</th>
+				<th scope="col">Date de fin</th>
+				<th scope="col">Delai</th>
+				<th scope="col">Client</th> 
+				<th scope="col">Livres</th> 
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="emprunt : ${emprunts}">
+				<td th:text="${emprunt.datedebut}"></td>		
+				<td th:text="${emprunt.datefin}"></td>		
+				<td th:text="${emprunt.delai}"></td>	
+				 <td th:text="${emprunt.clientE}"></td>
+				 <td>
+				 <ul>
+				 <li th:each="livre : ${er.findByLivre(emprunt)}" th:text="${livre.titre}"></li>
+				 </ul>
+				 <td> <a th:href="@{/emprunt/delete/{id}(id=${emprunt.id})}"> <button type="button" class="btn btn-outline-danger">SUPPRIMER</button></a></td>
+				<td> <a th:href="@{/emprunt/update/{id}(id=${emprunt.id})}"><button type="button" class="btn btn-outline-info"> MODIFIER</button></a></td>
+				 </td>
+				 
+			</tr>
+		</tbody>
+	</table> 
+</body>
+</html>
